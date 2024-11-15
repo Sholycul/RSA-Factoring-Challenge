@@ -1,13 +1,15 @@
+#!/usr/bin/python3
+
 import sys
 import math
 
 def factoring(n):
     for i in range(2, int(math.sqrt(n)) + 1):
         if n % i == 0:
-            return (n/i, i)
+            return (int(n/i), i)
 
 if __name__ == "__main__":
-    if len(sys.argv != 2):
+    if len(sys.argv) != 2:
         print("Usage: factor <file>")
         sys.exit(1)
     
@@ -16,7 +18,7 @@ if __name__ == "__main__":
         lines = nums.readlines()
 
     for line in lines:
-        num = line.strip()
+        num = int(line.strip())
         if num:
             p, q = factoring(num)
             print(f"{num}={p}*{q}")
