@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 import sys
 import time
@@ -6,9 +6,14 @@ import time
 def factoring(n):
     if n % 2 == 0:
         return (int(n / 2), 2)
+
+def factoring(n):
+    if n % 2 == 0:
+        return (n // 2, 2)
     for i in range(3, int(n ** 0.5) + 1, 2):
         if n % i == 0:
-            return (int(n/i), i)
+            return (n // i, i)
+    return (n, 1)
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:
@@ -18,10 +23,14 @@ if __name__ == "__main__":
     file = sys.argv[1]
     with open(file, "r") as nums:
         lines = nums.readlines()
-
+    
+    res = []
     for line in lines:
         num = int(line.strip())
-        if num:
+        if num > 1:
             p, q = factoring(num)
             print(f"{num}={p}*{q}")
     print(time.process_time())
+    res.append(f"{num}={p}*{q}")
+
+    print("\n".join(res))
